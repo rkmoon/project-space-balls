@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://nn17hxc7bwxr"]
+[gd_scene load_steps=10 format=3 uid="uid://nn17hxc7bwxr"]
 
 [ext_resource type="Script" path="res://Scenes/test_scene.gd" id="1_1wq1n"]
 [ext_resource type="Texture2D" uid="uid://b4d486uccfgep" path="res://Art/Planets/planet1.png" id="1_gqlov"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dxv0trppjemnq" path="res://Art/Planets/planet7.png" id="3_3edc3"]
 [ext_resource type="Texture2D" uid="uid://demsi5f1vpu8u" path="res://Art/Backgrounds/spr_stars01.png" id="4_x23fc"]
 [ext_resource type="PackedScene" uid="uid://cwy5oet4toqwy" path="res://Scenes/Objects/space_object.tscn" id="6_c2i12"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sp4ea"]
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n14np"]
 radius = 263.321
@@ -19,7 +22,16 @@ orbit_radius_min = 25.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="MiddlePlanet" type="Area2D" parent="."]
+[node name="MiddlePlanet" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet"]
+shape = SubResource("CircleShape2D_sp4ea")
+
+[node name="Sprite2D" type="Sprite2D" parent="MiddlePlanet"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_gqlov")
+
+[node name="Gravity" type="Area2D" parent="MiddlePlanet"]
 gravity_space_override = 2
 gravity_point = true
 gravity = 100.0
@@ -28,12 +40,8 @@ linear_damp = 0.0
 angular_damp_space_override = 2
 angular_damp = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet/Gravity"]
 shape = SubResource("CircleShape2D_n14np")
-
-[node name="Sprite2D" type="Sprite2D" parent="MiddlePlanet"]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_gqlov")
 
 [node name="OrbitingPlanet" type="RigidBody2D" parent="."]
 position = Vector2(-195, 0)
