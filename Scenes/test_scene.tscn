@@ -16,7 +16,6 @@ radius = 263.321
 script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
 orbit_radius_min = 25.0
-number_of_orbits = 15
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
