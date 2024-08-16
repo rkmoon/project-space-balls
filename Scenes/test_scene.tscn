@@ -25,7 +25,6 @@ number_of_orbits = 0
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
-gravity_scale = 0.0
 freeze = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet"]
@@ -51,7 +50,6 @@ shape = SubResource("CircleShape2D_n14np")
 position = Vector2(-195, 0)
 script = ExtResource("2_n62oi")
 gravity_node = NodePath("../MiddlePlanet/Gravity")
-color_gradient = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingPlanet"]
 shape = SubResource("CircleShape2D_shfy3")
