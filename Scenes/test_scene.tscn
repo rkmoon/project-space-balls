@@ -23,6 +23,8 @@ orbit_radius_min = 25.0
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
+freeze = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet"]
 shape = SubResource("CircleShape2D_sp4ea")
