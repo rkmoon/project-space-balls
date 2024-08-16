@@ -14,6 +14,9 @@ radius = 263.321
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1wq1n")
+orbital_object_scene = ExtResource("6_c2i12")
+orbit_radius_min = 25.0
+number_of_orbits = 15
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -47,9 +50,3 @@ texture = ExtResource("3_3edc3")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_x23fc")
-
-[node name="SpaceObject" parent="." instance=ExtResource("6_c2i12")]
-position = Vector2(-41, 51)
-
-[node name="SpaceObject2" parent="." instance=ExtResource("6_c2i12")]
-position = Vector2(187, 116)
