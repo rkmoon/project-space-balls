@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://nn17hxc7bwxr"]
+
+[ext_resource type="Texture2D" uid="uid://b4d486uccfgep" path="res://Art/Planets/planet1.png" id="1_7olt0"]
+[ext_resource type="Texture2D" uid="uid://dxv0trppjemnq" path="res://Art/Planets/planet7.png" id="2_1k3ew"]
+[ext_resource type="Script" path="res://planet.gd" id="2_pask1"]
+[ext_resource type="Texture2D" uid="uid://demsi5f1vpu8u" path="res://Art/Backgrounds/spr_stars01.png" id="4_671f5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n14np"]
+radius = 263.321
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shfy3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+gravity_space_override = 2
+gravity_point = true
+gravity = 100.0
+linear_damp_space_override = 2
+angular_damp_space_override = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_n14np")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7olt0")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-195, 0)
+script = ExtResource("2_pask1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_shfy3")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_1k3ew")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("4_671f5")
