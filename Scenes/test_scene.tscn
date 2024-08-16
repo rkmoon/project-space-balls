@@ -18,11 +18,13 @@ radius = 263.321
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
-orbit_radius_min = 25.0
+orbit_radius_min = 80.0
+number_of_orbits = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
+gravity_scale = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet"]
 shape = SubResource("CircleShape2D_sp4ea")
@@ -43,10 +45,11 @@ angular_damp = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddlePlanet/Gravity"]
 shape = SubResource("CircleShape2D_n14np")
 
-[node name="OrbitingPlanet" type="RigidBody2D" parent="."]
+[node name="OrbitingPlanet" type="RigidBody2D" parent="." node_paths=PackedStringArray("gravity_node")]
 position = Vector2(-195, 0)
 script = ExtResource("2_n62oi")
-initial_velocity = Vector2(0, 80)
+gravity_node = NodePath("../MiddlePlanet/Gravity")
+color_gradient = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingPlanet"]
 shape = SubResource("CircleShape2D_shfy3")
