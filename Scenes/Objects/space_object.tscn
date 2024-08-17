@@ -11,6 +11,9 @@ region = Rect2(57, 213, 109, 90)
 radius = 2.0
 
 [node name="SpaceObject" type="RigidBody2D"]
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_sajwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

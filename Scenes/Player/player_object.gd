@@ -10,11 +10,13 @@ var is_dragging: bool = false
 var has_fired: bool = false
 var trajectory_points: Array = []
 var target_scale = Vector2(1,1)
+var target_mass : float
 
 func _ready() -> void:
 	freeze = true
 	connect("body_entered", _on_body_entered)
 	target_scale = scale
+	target_mass = mass
 
 
 func _input(event: InputEvent) -> void:
@@ -50,6 +52,10 @@ func _physics_process(delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	scale = target_scale
+	if mass != target_mass:
+			print(linear_velocity)
+	#mass = target_mass
+
 
 func update_trajectory() -> void:
 	trajectory_points.clear()
@@ -108,11 +114,12 @@ func _on_body_entered(body: Node) -> void:
 		if body.mass < self.mass:
 			absorb_object(body)
 
+
 			
 func absorb_object(body: RigidBody2D) -> void:
 	var added_mass = body.mass
-	mass += body.mass
+	target_mass = body.mass + mass
 	var scale_factor = pow((added_mass/mass), 1./3.)
 	body.queue_free()
 	target_scale += Vector2(1,1)
-	print(body.name + ": absorbed. New Mass: " + str(mass) + " New Scale:" + str(target_scale))
+	#print(body.name + ": absorbed. New Mass: " + str(mass) + " New Scale:" + str(target_scale))
