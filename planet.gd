@@ -2,6 +2,8 @@ extends RigidBody2D
 
 @export var gravity_node : Node2D
 @export var color_gradient: Array[Color] = [Color(1, 1, 1, 0.5), Color(1, 0, 0, 0.5)]  # Default gradient from white to red
+@export var prediction_time: float = 10.0
+@export var step : float = 0.1
 
 var click_position: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
@@ -44,9 +46,6 @@ func update_trajectory() -> void:
 	var force = (release_position - click_position).length()
 	
 	var velocity = -direction * force
-	
-	var prediction_time = 10.0  # Adjust this time to match how far ahead you want to predict the trajectory
-	var step = 0.1  # Time step for each prediction point
 	
 	var current_position = position
 	var current_velocity = velocity
