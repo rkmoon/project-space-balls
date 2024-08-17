@@ -51,6 +51,7 @@ position = Vector2(-195, 0)
 script = ExtResource("2_n62oi")
 color_gradient = null
 gravity_node = NodePath("../MiddlePlanet/Gravity")
+color_gradient = [Color(0.849497, 0.18215, 0.807406, 0.5), Color(0.63064, 0.269606, 0.980716, 0.5)]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OrbitingPlanet"]
 shape = SubResource("CircleShape2D_shfy3")
