@@ -19,6 +19,8 @@ var initial_scales: Array[Vector2] = []
 var accumulated_scale_factor : float = 0.0
 var collision_shape : CollisionShape2D
 var initial_radius : float
+var speed_number: Label
+var mass_number: Label
 
 func _ready() -> void:
 	freeze = true
@@ -33,6 +35,8 @@ func _ready() -> void:
 	layer_utils.set_prelauch_layers(self)
 	collision_shape = get_node("CollisionShape2D")
 	initial_radius = collision_shape.shape.radius
+	speed_number = %SpeedNumber
+	mass_number = %MassNumber
 
 	
 
@@ -62,6 +66,9 @@ func _input(event: InputEvent) -> void:
 		freeze = true
 		has_fired = false
 
+func _process(delta: float) -> void:
+	speed_number.text = str(int(linear_velocity.length()))
+	mass_number.text = str(int(mass))
 
 func _physics_process(delta: float) -> void:
 	if is_dragging:
@@ -69,6 +76,7 @@ func _physics_process(delta: float) -> void:
 	elif !is_dragging and freeze:
 		position = get_global_mouse_position()
 		update_trajectory()
+	#scale = target_scale
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	mass = target_mass

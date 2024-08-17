@@ -29,4 +29,5 @@ func _ready() -> void:
 	for child in children_utils.get_all_children(self):
 		var initial_scale = child.scale
 		child.scale = Vector2(random_scale, random_scale) * initial_scale
+	mass = mass * random_scale  # Adjust the mass based on the scale
 
