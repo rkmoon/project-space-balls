@@ -9,10 +9,12 @@ var click_position: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
 var has_fired: bool = false
 var trajectory_points: Array = []
+var target_scale = Vector2(1,1)
 
 func _ready() -> void:
 	freeze = true
 	connect("body_entered", _on_body_entered)
+	target_scale = scale
 
 
 func _input(event: InputEvent) -> void:
@@ -45,6 +47,9 @@ func _physics_process(delta: float) -> void:
 	elif !is_dragging and freeze:
 		position = get_global_mouse_position()
 		update_trajectory()
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	scale = target_scale
 
 func update_trajectory() -> void:
 	trajectory_points.clear()
@@ -105,6 +110,9 @@ func _on_body_entered(body: Node) -> void:
 
 			
 func absorb_object(body: RigidBody2D) -> void:
+	var added_mass = body.mass
 	mass += body.mass
-	print(body.name + ": absorbed. New Mass: " + str(mass))
+	var scale_factor = pow((added_mass/mass), 1./3.)
 	body.queue_free()
+	target_scale += Vector2(1,1)
+	print(body.name + ": absorbed. New Mass: " + str(mass) + " New Scale:" + str(target_scale))
