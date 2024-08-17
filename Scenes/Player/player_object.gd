@@ -4,6 +4,7 @@ extends RigidBody2D
 @export var color_gradient: Array[Color] = [Color(1, 1, 1, 0.5), Color(1, 0, 0, 0.5)]  # Default gradient from white to red
 @export var prediction_time: float = 10.0
 @export var step : float = 0.1
+@export var scale_factor = .1
 
 var click_position: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
@@ -13,7 +14,10 @@ var target_scale = Vector2(1,1)
 var target_mass : float
 var absorbing_area : Area2D
 var children : Array = []
-
+var current_children_scale = Vector2(1,1)
+var initial_scales: Array[Vector2] = []
+var accumulated_scale_factor : float = 0.0
+var thread : Thread
 
 
 
@@ -22,11 +26,13 @@ func _ready() -> void:
 	connect("body_entered", _on_body_entered)
 	target_scale = scale
 	target_mass = mass
-	children = get_children()
+	children = children_utils.get_all_children(self)
 	for child in children:
 		if child is Area2D:
 			layer_utils.set_prelauch_layers(child)
+		initial_scales.append(child.scale)
 	layer_utils.set_prelauch_layers(self)
+	thread = Thread.new()
 
 	
 
@@ -42,7 +48,6 @@ func _input(event: InputEvent) -> void:
 			is_dragging = false
 			freeze = false
 			var release_position = event.position
-			print(release_position)
 			var direction = -(release_position - click_position).normalized()
 			var force = (release_position - click_position).length()
 			apply_central_impulse(direction * force * mass)
@@ -58,7 +63,6 @@ func _input(event: InputEvent) -> void:
 		has_fired = false
 
 
-
 func _physics_process(delta: float) -> void:
 	if is_dragging:
 		update_trajectory()
@@ -67,10 +71,7 @@ func _physics_process(delta: float) -> void:
 		update_trajectory()
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	scale = target_scale
-	if mass != target_mass:
-			print(linear_velocity)
-	#mass = target_mass
+	mass = target_mass
 
 
 func update_trajectory() -> void:
@@ -134,8 +135,19 @@ func _on_body_entered(body: Node) -> void:
 			
 func absorb_object(body: RigidBody2D) -> void:
 	var added_mass = body.mass
-	target_mass = body.mass + mass
-	var scale_factor = pow((added_mass/mass), 1./3.)
+	target_mass = added_mass + mass
 	body.queue_free()
-	target_scale += Vector2(1,1)
-	#print(body.name + ": absorbed. New Mass: " + str(mass) + " New Scale:" + str(target_scale))
+	accumulated_scale_factor += scale_factor
+	target_scale = (Vector2.ONE * accumulated_scale_factor)
+	print("Target Scale: ", target_scale)
+	set_scales()
+
+func set_scales():
+	for i in range(children.size()):
+		var tween = get_tree().create_tween()
+		var child = children[i]
+		print("Initial Scale[", i, "]: ", initial_scales[i])
+		var new_scale = initial_scales[i] + target_scale
+		tween.tween_property(child, "scale", new_scale, 0.01)
+		print("Child[", i, "] Scale: ", child.scale)
+	current_children_scale = target_scale

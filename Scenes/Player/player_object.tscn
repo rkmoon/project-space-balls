@@ -1,17 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b74s7svs8sht1"]
+[gd_scene load_steps=5 format=3 uid="uid://b74s7svs8sht1"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player_object.gd" id="1_6y3og"]
 [ext_resource type="Texture2D" uid="uid://6ov0oyw3tycb" path="res://Art/CustomArt/Planets/planets.png" id="2_xmgbw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shfy3"]
-radius = 4.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7fra"]
-atlas = ExtResource("2_xmgbw")
-region = Rect2(243, 33, 120, 108)
+radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vimak"]
-radius = 9.0
 
 [node name="OrbitingPlanet" type="RigidBody2D"]
 collision_layer = 2
@@ -27,7 +22,9 @@ shape = SubResource("CircleShape2D_shfy3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = SubResource("AtlasTexture_d7fra")
+texture = ExtResource("2_xmgbw")
+region_enabled = true
+region_rect = Rect2(441, 38, 109, 98)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

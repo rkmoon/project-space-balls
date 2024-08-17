@@ -19,7 +19,7 @@ script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
 orbit_radius_min = 80.0
 orbit_radius_max = 250.0
-number_of_orbits = 1000
+number_of_orbits = 500
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
@@ -35,16 +35,17 @@ freeze = true
 shape = SubResource("CircleShape2D_sp4ea")
 
 [node name="Sprite2D" type="Sprite2D" parent="MiddlePlanet"]
-scale = Vector2(0.25, 0.25)
 texture = SubResource("AtlasTexture_rejn7")
 
 [node name="Gravity" parent="MiddlePlanet" instance=ExtResource("4_npblm")]
 collision_mask = 3
 
 [node name="player_object" parent="." node_paths=PackedStringArray("gravity_node") instance=ExtResource("5_fykwb")]
+position = Vector2(318, 0)
 collision_layer = 4
 collision_mask = 0
 gravity_node = NodePath("../MiddlePlanet/Gravity")
+scale_factor = 0.005
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_x23fc")
