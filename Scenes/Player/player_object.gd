@@ -17,7 +17,8 @@ var children : Array = []
 var current_children_scale = Vector2(1,1)
 var initial_scales: Array[Vector2] = []
 var accumulated_scale_factor : float = 0.0
-
+var collision_shape : CollisionShape2D
+var initial_radius : float
 
 func _ready() -> void:
 	freeze = true
@@ -26,11 +27,12 @@ func _ready() -> void:
 	target_mass = mass
 	children = children_utils.get_all_children(self)
 	for child in children:
-		print(child.name)
 		if child is Area2D:
 			layer_utils.set_prelauch_layers(child)
 		initial_scales.append(child.scale)
 	layer_utils.set_prelauch_layers(self)
+	collision_shape = get_node("CollisionShape2D")
+	initial_radius = collision_shape.shape.radius
 
 	
 
@@ -48,7 +50,7 @@ func _input(event: InputEvent) -> void:
 			var release_position = event.position
 			var direction = -(release_position - click_position).normalized()
 			var force = (release_position - click_position).length()
-			apply_central_impulse(direction * force * mass)
+			apply_central_impulse(direction * force * mass)			
 			has_fired = true
 			queue_redraw()  # Triggers the _draw function to clear the trajectory after firing
 			layer_utils.set_regular_layers(self)
@@ -137,16 +139,15 @@ func absorb_object(body: RigidBody2D) -> void:
 	body.queue_free()
 	accumulated_scale_factor += scale_factor
 	target_scale = (Vector2.ONE * accumulated_scale_factor)
-	print("Target Scale: ", target_scale)
 	set_scales()
 
 func set_scales():
 	for i in range(children.size()):
 		var tween = get_tree().create_tween()
 		var child = children[i]
-		#print("Initial Scale[", i, "]: ", initial_scales[i])
 		var new_scale = initial_scales[i] + target_scale
 		tween.tween_property(child, "scale", new_scale, 0.001)
-		#print("Child[", i, "] Scale: ", child.scale)
-		print(child.name)
+	var circle_shape = collision_shape.shape as CircleShape2D
+	if circle_shape:
+		circle_shape.radius = initial_radius * accumulated_scale_factor
 	current_children_scale = target_scale

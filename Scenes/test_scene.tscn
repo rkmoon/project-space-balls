@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwy5oet4toqwy" path="res://Scenes/Objects/space_object.tscn" id="6_c2i12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sp4ea"]
-radius = 13.0
+radius = 52.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rejn7"]
 atlas = ExtResource("3_dt3ex")
@@ -19,10 +19,7 @@ script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
 orbit_radius_min = 80.0
 orbit_radius_max = 250.0
-number_of_orbits = 500
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.5, 1.5)
+number_of_orbits = 100
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
 collision_layer = 2
@@ -49,3 +46,6 @@ scale_factor = 0.005
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_x23fc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)

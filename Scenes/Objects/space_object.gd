@@ -14,5 +14,19 @@ func _ready() -> void:
 	var direction = (position - orbit_center).normalized()
 	var perpendicular_direction = Vector2(-direction.y, direction.x)  # Perpendicular vector
 
+	# Randomly decide whether to invert the direction
+	#if randf() < 0.5:
+	#	perpendicular_direction = -perpendicular_direction
+
 	# Apply the calculated orbital velocity
 	linear_velocity = perpendicular_direction * orbital_velocity
+
+	# Add a small random angular velocity
+	angular_velocity = randf_range(-50, 50)  # Random angular velocity in radians per second
+
+	# Set a random scale for the object
+	var random_scale = randf_range(0.5, 2.0)  # Random scale between 0.5 and 2.0
+	for child in children_utils.get_all_children(self):
+		var initial_scale = child.scale
+		child.scale = Vector2(random_scale, random_scale) * initial_scale
+
