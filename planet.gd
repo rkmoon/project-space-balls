@@ -108,4 +108,3 @@ func absorb_object(body: RigidBody2D) -> void:
 	mass += body.mass
 	print(body.name + ": absorded")
 	body.queue_free()
-
