@@ -40,10 +40,8 @@ func update_trajectory() -> void:
 	trajectory_points.clear()
 	
 	var release_position = get_viewport().get_mouse_position()
-	print(release_position)
 	var direction = (release_position - click_position).normalized()
 	var force = (release_position - click_position).length()
-	print(click_position)
 	
 	var velocity = -direction * force
 	
