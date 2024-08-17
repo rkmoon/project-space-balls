@@ -26,6 +26,7 @@ func _ready() -> void:
 	target_mass = mass
 	children = children_utils.get_all_children(self)
 	for child in children:
+		print(child.name)
 		if child is Area2D:
 			layer_utils.set_prelauch_layers(child)
 		initial_scales.append(child.scale)
@@ -143,8 +144,9 @@ func set_scales():
 	for i in range(children.size()):
 		var tween = get_tree().create_tween()
 		var child = children[i]
-		print("Initial Scale[", i, "]: ", initial_scales[i])
+		#print("Initial Scale[", i, "]: ", initial_scales[i])
 		var new_scale = initial_scales[i] + target_scale
 		tween.tween_property(child, "scale", new_scale, 0.001)
-		print("Child[", i, "] Scale: ", child.scale)
+		#print("Child[", i, "] Scale: ", child.scale)
+		print(child.name)
 	current_children_scale = target_scale
