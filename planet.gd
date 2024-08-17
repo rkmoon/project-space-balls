@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var gravity_node : Node2D
-@export var color_gradient: Array = [Color(1, 1, 1, 0.5), Color(1, 0, 0, 0.5)]  # Default gradient from white to red
+@export var color_gradient: Array[Color] = [Color(1, 1, 1, 0.5), Color(1, 0, 0, 0.5)]  # Default gradient from white to red
 
 var click_position: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
