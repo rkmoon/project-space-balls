@@ -17,8 +17,6 @@ var children : Array = []
 var current_children_scale = Vector2(1,1)
 var initial_scales: Array[Vector2] = []
 var accumulated_scale_factor : float = 0.0
-var thread : Thread
-
 
 
 func _ready() -> void:
@@ -32,7 +30,6 @@ func _ready() -> void:
 			layer_utils.set_prelauch_layers(child)
 		initial_scales.append(child.scale)
 	layer_utils.set_prelauch_layers(self)
-	thread = Thread.new()
 
 	
 
@@ -148,6 +145,6 @@ func set_scales():
 		var child = children[i]
 		print("Initial Scale[", i, "]: ", initial_scales[i])
 		var new_scale = initial_scales[i] + target_scale
-		tween.tween_property(child, "scale", new_scale, 0.01)
+		tween.tween_property(child, "scale", new_scale, 0.001)
 		print("Child[", i, "] Scale: ", child.scale)
 	current_children_scale = target_scale
