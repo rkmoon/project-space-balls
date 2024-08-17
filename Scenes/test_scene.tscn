@@ -25,6 +25,8 @@ number_of_orbits = 1000
 zoom = Vector2(1.5, 1.5)
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
+collision_layer = 2
+collision_mask = 3
 mass = 50.0
 gravity_scale = 0.0
 freeze = true
@@ -37,8 +39,12 @@ scale = Vector2(0.25, 0.25)
 texture = SubResource("AtlasTexture_rejn7")
 
 [node name="Gravity" parent="MiddlePlanet" instance=ExtResource("4_npblm")]
+collision_mask = 3
 
-[node name="player_object" parent="." instance=ExtResource("5_fykwb")]
+[node name="player_object" parent="." node_paths=PackedStringArray("gravity_node") instance=ExtResource("5_fykwb")]
+collision_layer = 4
+collision_mask = 0
+gravity_node = NodePath("../MiddlePlanet/Gravity")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_x23fc")

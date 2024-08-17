@@ -11,12 +11,24 @@ var has_fired: bool = false
 var trajectory_points: Array = []
 var target_scale = Vector2(1,1)
 var target_mass : float
+var absorbing_area : Area2D
+var children : Array = []
+
+
+
 
 func _ready() -> void:
 	freeze = true
 	connect("body_entered", _on_body_entered)
 	target_scale = scale
 	target_mass = mass
+	children = get_children()
+	for child in children:
+		if child is Area2D:
+			layer_utils.set_prelauch_layers(child)
+	layer_utils.set_prelauch_layers(self)
+
+	
 
 
 func _input(event: InputEvent) -> void:
@@ -36,6 +48,10 @@ func _input(event: InputEvent) -> void:
 			apply_central_impulse(direction * force * mass)
 			has_fired = true
 			queue_redraw()  # Triggers the _draw function to clear the trajectory after firing
+			layer_utils.set_regular_layers(self)
+			for child in children:
+				if child is Area2D:
+					layer_utils.set_regular_layers(child)
 
 	if event.is_action_pressed("reset_planet"):
 		freeze = true
