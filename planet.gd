@@ -12,6 +12,8 @@ var trajectory_points: Array = []
 
 func _ready() -> void:
 	freeze = true
+	connect("body_entered", _on_body_entered)
+
 
 func _input(event: InputEvent) -> void:
 	if !has_fired:
@@ -30,6 +32,12 @@ func _input(event: InputEvent) -> void:
 			apply_central_impulse(direction * force)
 			has_fired = true
 			queue_redraw()  # Triggers the _draw function to clear the trajectory after firing
+
+	if event.is_action_pressed("reset_planet"):
+		freeze = true
+		has_fired = false
+
+
 
 func _physics_process(delta: float) -> void:
 	if is_dragging:
@@ -88,3 +96,16 @@ func _draw() -> void:
 			
 			# Draw the line with the interpolated color
 			draw_line(point1, point2, color)
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is RigidBody2D:
+		if body.mass < self.mass:
+			absorb_object(body)
+
+			
+func absorb_object(body: RigidBody2D) -> void:
+	mass += body.mass
+	print(body.name + ": absorded")
+	body.queue_free()
+
