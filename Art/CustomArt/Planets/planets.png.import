@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8vonrt8ckts0"
-path="res://.godot/imported/planet18_0.png-c6a4156d0004c25c38c0f21a5de15bae.ctex"
+uid="uid://6ov0oyw3tycb"
+path="res://.godot/imported/planets.png-5a61a1d67474a19ddb75fd2b67b927e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Planets/planet18_0.png"
-dest_files=["res://.godot/imported/planet18_0.png-c6a4156d0004c25c38c0f21a5de15bae.ctex"]
+source_file="res://Art/CustomArt/Planets/planets.png"
+dest_files=["res://.godot/imported/planets.png-5a61a1d67474a19ddb75fd2b67b927e6.ctex"]
 
 [params]
 

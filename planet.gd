@@ -106,5 +106,5 @@ func _on_body_entered(body: Node) -> void:
 			
 func absorb_object(body: RigidBody2D) -> void:
 	mass += body.mass
-	print(body.name + ": absorded")
+	print(body.name + ": absorbed. New Mass: " + str(mass))
 	body.queue_free()

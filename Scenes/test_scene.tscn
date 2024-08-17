@@ -1,27 +1,36 @@
-[gd_scene load_steps=10 format=3 uid="uid://nn17hxc7bwxr"]
+[gd_scene load_steps=11 format=3 uid="uid://nn17hxc7bwxr"]
 
 [ext_resource type="Script" path="res://Scenes/test_scene.gd" id="1_1wq1n"]
-[ext_resource type="Texture2D" uid="uid://b4d486uccfgep" path="res://Art/Planets/planet1.png" id="1_gqlov"]
 [ext_resource type="Script" path="res://planet.gd" id="2_n62oi"]
-[ext_resource type="Texture2D" uid="uid://dxv0trppjemnq" path="res://Art/Planets/planet7.png" id="3_3edc3"]
-[ext_resource type="Texture2D" uid="uid://demsi5f1vpu8u" path="res://Art/Backgrounds/spr_stars01.png" id="4_x23fc"]
+[ext_resource type="Texture2D" uid="uid://6ov0oyw3tycb" path="res://Art/CustomArt/Planets/planets.png" id="3_dt3ex"]
+[ext_resource type="Texture2D" uid="uid://demsi5f1vpu8u" path="res://Art/FreeArt/Backgrounds/spr_stars01.png" id="4_x23fc"]
 [ext_resource type="PackedScene" uid="uid://cwy5oet4toqwy" path="res://Scenes/Objects/space_object.tscn" id="6_c2i12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sp4ea"]
-radius = 24.0
+radius = 13.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rejn7"]
+atlas = ExtResource("3_dt3ex")
+region = Rect2(632, 38, 110, 97)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n14np"]
 radius = 263.321
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_shfy3"]
+radius = 5.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7fra"]
+atlas = ExtResource("3_dt3ex")
+region = Rect2(243, 33, 120, 108)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
 orbit_radius_min = 80.0
-number_of_orbits = 0
+number_of_orbits = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
 gravity_scale = 0.0
@@ -32,7 +41,7 @@ shape = SubResource("CircleShape2D_sp4ea")
 
 [node name="Sprite2D" type="Sprite2D" parent="MiddlePlanet"]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_gqlov")
+texture = SubResource("AtlasTexture_rejn7")
 
 [node name="Gravity" type="Area2D" parent="MiddlePlanet"]
 gravity_space_override = 2
@@ -60,7 +69,7 @@ shape = SubResource("CircleShape2D_shfy3")
 
 [node name="Sprite2D" type="Sprite2D" parent="OrbitingPlanet"]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_3edc3")
+texture = SubResource("AtlasTexture_d7fra")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("4_x23fc")

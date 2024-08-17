@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://demsi5f1vpu8u"
-path="res://.godot/imported/spr_stars01.png-10be9bcb8792dc41d9eabdeca975de93.ctex"
+uid="uid://cs7s8cmhipvyk"
+path="res://.godot/imported/planet3.png-6f85a28399ef85fcef095c260bf82557.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Backgrounds/spr_stars01.png"
-dest_files=["res://.godot/imported/spr_stars01.png-10be9bcb8792dc41d9eabdeca975de93.ctex"]
+source_file="res://Art/FreeArt/Planets/planet3.png"
+dest_files=["res://.godot/imported/planet3.png-6f85a28399ef85fcef095c260bf82557.ctex"]
 
 [params]
 

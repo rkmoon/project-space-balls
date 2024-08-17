@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bup1h4brckfmj"
-path="res://.godot/imported/planet6.png-6e33f33911424fc8873bbdfd3a79dcc0.ctex"
+uid="uid://d2c7khxvth5jf"
+path="res://.godot/imported/planet11.png-56b3fdb4c0fc2ab8ec595ea40c1021a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Planets/planet6.png"
-dest_files=["res://.godot/imported/planet6.png-6e33f33911424fc8873bbdfd3a79dcc0.ctex"]
+source_file="res://Art/FreeArt/Planets/planet11.png"
+dest_files=["res://.godot/imported/planet11.png-56b3fdb4c0fc2ab8ec595ea40c1021a2.ctex"]
 
 [params]
 
