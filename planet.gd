@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 			print(release_position)
 			var direction = -(release_position - click_position).normalized()
 			var force = (release_position - click_position).length()
-			apply_central_impulse(direction * force)
+			apply_central_impulse(direction * force * mass)
 			has_fired = true
 			queue_redraw()  # Triggers the _draw function to clear the trajectory after firing
 

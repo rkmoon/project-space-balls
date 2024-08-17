@@ -19,6 +19,7 @@ radius = 263.321
 script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
 orbit_radius_min = 80.0
+number_of_orbits = 0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -47,7 +48,7 @@ shape = SubResource("CircleShape2D_n14np")
 
 [node name="OrbitingPlanet" type="RigidBody2D" parent="." node_paths=PackedStringArray("gravity_node")]
 position = Vector2(-195, 0)
-mass = 2.0
+mass = 2.202
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("2_n62oi")
