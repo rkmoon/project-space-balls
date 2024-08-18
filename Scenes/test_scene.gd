@@ -1,11 +1,26 @@
 extends Node2D
 
+
 @export var orbital_object_scene: PackedScene
 @export var orbit_radius_min: float = 100.0
 @export var orbit_radius_max: float = 300.0
 @export var number_of_orbits: int = 10
 @export var orbit_center: Vector2
 @export var gravity_strength: float = 100.0  # Same as Area2D's gravity
+@export var asteroid_types: Array[Texture2D]
+
+# Getting player stats from player scene
+@export var player_planet: RigidBody2D
+var player_mass: int
+var player_speed: int
+# Setting temporary player stats to use for score updating
+var temp_player_mass := player_mass
+var prev_player_mass := player_mass
+var temp_player_speed := player_speed
+var prev_player_speed := player_speed
+# The score and score label
+var score: int
+var score_label: Label
 
 func _ready() -> void:
 	for i in range(number_of_orbits):
@@ -18,9 +33,36 @@ func _ready() -> void:
 		var angle = i * PI * 2 / number_of_orbits
 		var position_offset = Vector2(cos(angle), sin(angle)) * orbit_radius
 		
+		var asteroid_sprite: Sprite2D
+		asteroid_sprite.set_texure(asteroid_types.pick_random())
+		
+		orbit_object.add_child(asteroid_sprite)
+		
 		# Set the orbit object's position and relevant properties
 		orbit_object.position = orbit_center + position_offset
 		orbit_object.orbit_center = orbit_center
 		orbit_object.gravity_strength = gravity_strength
 		
 		add_child(orbit_object)
+	
+	score_label = %ScoreNumber
+
+func _process(delta):
+	# Updating player stats
+	player_mass = int(player_planet.mass_number.text)
+	player_speed = int(player_planet.speed_number.text)
+	
+	# Setting other player-tied variables
+	if prev_player_mass != player_mass:
+		temp_player_mass = player_mass
+	else:
+		temp_player_mass = 0
+	temp_player_speed = player_speed
+	
+	# Getting score based on player stats
+	score += temp_player_mass * temp_player_speed
+	score_label.text = str(int(score))
+	
+	# Setting the previous player stats
+	prev_player_mass = player_mass
+	prev_player_speed = player_speed
