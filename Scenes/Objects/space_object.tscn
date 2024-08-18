@@ -15,7 +15,7 @@ collision_layer = 2
 collision_mask = 3
 continuous_cd = 2
 contact_monitor = true
-max_contacts_reported = 10
+max_contacts_reported = 50
 script = ExtResource("1_sajwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

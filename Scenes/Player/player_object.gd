@@ -24,7 +24,7 @@ var mass_number: Label
 
 func _ready() -> void:
 	freeze = true
-	connect("body_entered", _on_body_entered)
+	#connect("body_entered", _on_body_entered)
 	target_scale = scale
 	target_mass = mass
 	children = children_utils.get_all_children(self)
@@ -135,39 +135,46 @@ func _draw() -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body is RigidBody2D:
-		#if body.mass < self.mass:
-		_stick_to(body)
+	for child in get_children():
+		if body is RigidBody2D and body != self and body != child:
+			if body.mass < self.mass:
+				_stick_to(body)
+
+
 
 
 func _stick_to(body: RigidBody2D):
-	# Create a PinJoint2D to connect the two bodies
-	var joint = PinJoint2D.new()
-	joint.angular_limit_enabled = true
-	joint.angular_limit_upper = 0.0
-	joint.softness = 1
-	joint.bias = 0.0
-
+	call_deferred("_freeze_body", body)
+	call_deferred("_add_collision_shape_or_sprite", body)
 	
-	# Set the positions of the joint anchors
-	joint.position = (self.position + body.position) / 2  # Midpoint between the two bodies
-
-	# Set the bodies to be connected by the joint
-	joint.node_a = self.get_path()
-	joint.node_b = body.get_path()
+	# Connect the body_entered signal of the attached body to this object
+	var callable = Callable(self, "_on_body_entered")
+	if not body.is_connected("body_entered", callable):
+		body.connect("body_entered", callable)
+	else:	
+		print("Already connected")
+	layer_utils.set_attached_layers(body)
 	
-	# Add the joint to the scene tree
-	self.get_parent().add_child(joint)
-
-	# Optionally, adjust the joint's parameters like softness, damping, etc.
-	#joint.softness = 0.1  # Adjust as needed
-
-	# If you want to visually connect the objects (e.g., move a sprite or shape),
-	# you can parent the visual components of the second body to the first.
-	#body.get_parent().remove_child(body)
-	add_child(body)
+	# Adjust the mass and velocity to account for the combined object
+	var total_mass = self.mass + body.mass
+	target_mass = total_mass
 	
-	
+	# Calculate and apply angular impulse
+	var relative_position = body.global_position - self.global_position
+	var force = (body.mass * self.linear_velocity.length()) / 100 # Assuming the force is proportional to the mass and velocity
+	var torque = relative_position.cross(Vector2(force, 0))
+	self.apply_torque_impulse(torque)
+
+
+func _add_collision_shape_or_sprite(body: Node):
+	var global_position_before = body.global_position
+	body.reparent(self, true)
+	body.global_position = global_position_before
+
+func _freeze_body(body: RigidBody2D) -> void:
+	body.freeze = true
+	body.freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC
+
 func absorb_object(body: RigidBody2D) -> void:
 	var added_mass = body.mass
 	target_mass = added_mass + mass
