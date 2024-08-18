@@ -22,7 +22,7 @@ func _ready() -> void:
 	linear_velocity = perpendicular_direction * orbital_velocity
 
 	# Add a small random angular velocity
-	angular_velocity = randf_range(-50, 50)  # Random angular velocity in radians per second
+	angular_velocity = randf_range(-5, 5)  # Random angular velocity in radians per second
 
 	# Set a random scale for the object
 	var random_scale = randf_range(0.5, 2.0)  # Random scale between 0.5 and 2.0

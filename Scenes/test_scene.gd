@@ -34,10 +34,12 @@ func _ready() -> void:
 		var position_offset = Vector2(cos(angle), sin(angle)) * orbit_radius
 		
 		var asteroid_sprite: Sprite2D
-		asteroid_sprite.set_texure(asteroid_types.pick_random())
-		
-		orbit_object.add_child(asteroid_sprite)
-		
+		for child in orbit_object.get_children():
+			if child is Sprite2D:
+				asteroid_sprite = child as Sprite2D
+				break
+		asteroid_sprite.texture = asteroid_types.pick_random()
+
 		# Set the orbit object's position and relevant properties
 		orbit_object.position = orbit_center + position_offset
 		orbit_object.orbit_center = orbit_center

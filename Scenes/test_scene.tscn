@@ -1,24 +1,91 @@
-[gd_scene load_steps=13 format=3 uid="uid://nn17hxc7bwxr"]
+[gd_scene load_steps=25 format=3 uid="uid://nn17hxc7bwxr"]
 
 [ext_resource type="Script" path="res://Scenes/test_scene.gd" id="1_1wq1n"]
 [ext_resource type="Texture2D" uid="uid://dirf6dnnq11mn" path="res://Art/CustomArt/Planets/RandomRock1.png" id="3_2g3sy"]
-[ext_resource type="Texture2D" uid="uid://6ov0oyw3tycb" path="res://Art/CustomArt/Planets/planets.png" id="3_dt3ex"]
 [ext_resource type="PackedScene" uid="uid://q2gs7l2sk2ih" path="res://Scenes/Gravity/gravity.tscn" id="4_npblm"]
-[ext_resource type="Texture2D" uid="uid://demsi5f1vpu8u" path="res://Art/FreeArt/Backgrounds/spr_stars01.png" id="4_x23fc"]
 [ext_resource type="Texture2D" uid="uid://emg8onhk4eil" path="res://Art/CustomArt/Planets/RandomRock2.png" id="4_y1htx"]
 [ext_resource type="Texture2D" uid="uid://cducl5tvwcg1d" path="res://Art/CustomArt/Planets/RandomRock3.png" id="5_1ngrj"]
 [ext_resource type="PackedScene" uid="uid://b74s7svs8sht1" path="res://Scenes/Player/player_object.tscn" id="5_fykwb"]
+[ext_resource type="Texture2D" uid="uid://uv7to4innthv" path="res://Art/CustomArt/Planets/CentralPlanetGrey.png" id="5_qinvl"]
 [ext_resource type="Texture2D" uid="uid://b2a7ggkxyddfr" path="res://Art/CustomArt/Planets/RandomRock4.png" id="6_b1hpf"]
 [ext_resource type="PackedScene" uid="uid://cwy5oet4toqwy" path="res://Scenes/Objects/space_object.tscn" id="6_c2i12"]
+[ext_resource type="Texture2D" uid="uid://ded7k4kdfr74y" path="res://Art/FreeArt/Particles/Kenny'sParticlePack/star_06.png" id="7_73w8f"]
+[ext_resource type="Texture2D" uid="uid://d1syfnxbvogvs" path="res://Art/FreeArt/Particles/Kenny'sParticlePack/flame_04.png" id="7_n0d6v"]
+[ext_resource type="Script" path="res://Scenes/main_camera.gd" id="12_12a7u"]
+
+[sub_resource type="Curve" id="Curve_qf7oi"]
+_data = [Vector2(0, 0.1), 0.0, 0.0, 0, 1, Vector2(1, 0.1), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xnyvk"]
+curve = SubResource("Curve_qf7oi")
+
+[sub_resource type="Curve" id="Curve_03fps"]
+_data = [Vector2(0.0154639, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3lxga"]
+curve = SubResource("Curve_03fps")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8whr8"]
+lifetime_randomness = 0.39
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 500, 1)
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 10.77
+scale_curve = SubResource("CurveTexture_3lxga")
+alpha_curve = SubResource("CurveTexture_xnyvk")
+hue_variation_min = -0.17
+hue_variation_max = 0.33
+
+[sub_resource type="Curve" id="Curve_no47q"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gwu2x"]
+curve = SubResource("Curve_no47q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m3hu2"]
+lifetime_randomness = 0.39
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 500, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.02
+alpha_curve = SubResource("CurveTexture_gwu2x")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.22
+
+[sub_resource type="Curve" id="Curve_gfcmm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nfgqg"]
+curve = SubResource("Curve_gfcmm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wwe6y"]
+lifetime_randomness = 0.39
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1000, 500, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.02
+alpha_curve = SubResource("CurveTexture_nfgqg")
+hue_variation_min = -2.23517e-08
+hue_variation_max = 0.22
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sp4ea"]
 radius = 52.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rejn7"]
-atlas = ExtResource("3_dt3ex")
-region = Rect2(632, 38, 110, 97)
-
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("player_planet")]
+texture_filter = 3
+texture_repeat = 1
 script = ExtResource("1_1wq1n")
 orbital_object_scene = ExtResource("6_c2i12")
 orbit_radius_min = 80.0
@@ -26,6 +93,51 @@ orbit_radius_max = 250.0
 number_of_orbits = 100
 asteroid_types = Array[Texture2D]([ExtResource("3_2g3sy"), ExtResource("4_y1htx"), ExtResource("5_1ngrj"), ExtResource("6_b1hpf")])
 player_planet = NodePath("player_object")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer4"]
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_8whr8")
+texture = ExtResource("7_n0d6v")
+lifetime = 120.0
+preprocess = 114.21
+local_coords = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.02, 0.02)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer"]
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_m3hu2")
+texture = ExtResource("7_73w8f")
+lifetime = 5.0
+preprocess = 20.0
+local_coords = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer2"]
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_wwe6y")
+texture = ExtResource("7_73w8f")
+lifetime = 5.0
+preprocess = 20.0
+local_coords = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.01, 0.01)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer3"]
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_wwe6y")
+texture = ExtResource("7_73w8f")
+lifetime = 5.0
+preprocess = 20.0
+local_coords = true
 
 [node name="MiddlePlanet" type="RigidBody2D" parent="."]
 collision_layer = 2
@@ -38,7 +150,8 @@ freeze = true
 shape = SubResource("CircleShape2D_sp4ea")
 
 [node name="Sprite2D" type="Sprite2D" parent="MiddlePlanet"]
-texture = SubResource("AtlasTexture_rejn7")
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("5_qinvl")
 
 [node name="Gravity" parent="MiddlePlanet" instance=ExtResource("4_npblm")]
 visible = false
@@ -51,11 +164,11 @@ collision_mask = 0
 gravity_node = NodePath("../MiddlePlanet/Gravity")
 scale_factor = 0.005
 
-[node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("4_x23fc")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player_planet", "middle_planet")]
 zoom = Vector2(1.5, 1.5)
+script = ExtResource("12_12a7u")
+player_planet = NodePath("../player_object")
+middle_planet = NodePath("../MiddlePlanet")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
