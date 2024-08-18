@@ -136,11 +136,38 @@ func _draw() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body is RigidBody2D:
-		if body.mass < self.mass:
-			absorb_object(body)
+		#if body.mass < self.mass:
+		_stick_to(body)
 
 
-			
+func _stick_to(body: RigidBody2D):
+	# Create a PinJoint2D to connect the two bodies
+	var joint = PinJoint2D.new()
+	joint.angular_limit_enabled = true
+	joint.angular_limit_upper = 0.0
+	joint.softness = 1
+	joint.bias = 0.0
+
+	
+	# Set the positions of the joint anchors
+	joint.position = (self.position + body.position) / 2  # Midpoint between the two bodies
+
+	# Set the bodies to be connected by the joint
+	joint.node_a = self.get_path()
+	joint.node_b = body.get_path()
+	
+	# Add the joint to the scene tree
+	self.get_parent().add_child(joint)
+
+	# Optionally, adjust the joint's parameters like softness, damping, etc.
+	#joint.softness = 0.1  # Adjust as needed
+
+	# If you want to visually connect the objects (e.g., move a sprite or shape),
+	# you can parent the visual components of the second body to the first.
+	#body.get_parent().remove_child(body)
+	add_child(body)
+	
+	
 func absorb_object(body: RigidBody2D) -> void:
 	var added_mass = body.mass
 	target_mass = added_mass + mass
