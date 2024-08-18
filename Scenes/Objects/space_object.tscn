@@ -1,11 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwy5oet4toqwy"]
+[gd_scene load_steps=3 format=3 uid="uid://cwy5oet4toqwy"]
 
 [ext_resource type="Script" path="res://Scenes/Objects/space_object.gd" id="1_sajwa"]
-[ext_resource type="Texture2D" uid="uid://6ov0oyw3tycb" path="res://Art/CustomArt/Planets/planets.png" id="2_vykbd"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a7y77"]
-atlas = ExtResource("2_vykbd")
-region = Rect2(57, 213, 109, 90)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2035u"]
 radius = 2.0
@@ -17,10 +12,6 @@ continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("1_sajwa")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
-texture = SubResource("AtlasTexture_a7y77")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2035u")
