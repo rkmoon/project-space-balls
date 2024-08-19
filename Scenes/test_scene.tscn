@@ -117,9 +117,9 @@ player_planet = NodePath("player_object")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="NebulaLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer4"]
+[node name="NebulaParticles" type="GPUParticles2D" parent="ParallaxBackground/NebulaLayer"]
 amount = 2500
 process_material = SubResource("ParticleProcessMaterial_r06gj")
 texture = SubResource("CompressedTexture2D_rw4g5")
@@ -130,7 +130,7 @@ fixed_fps = 60
 visibility_rect = Rect2(-1259.96, -3179.31, 6416.86, 6251.05)
 local_coords = true
 
-[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer4"]
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParallaxBackground/NebulaLayer"]
 visible = false
 amount = 5000
 process_material = SubResource("ParticleProcessMaterial_2naj4")
