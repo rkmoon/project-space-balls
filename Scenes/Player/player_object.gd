@@ -69,6 +69,7 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	speed_number.text = str(int(linear_velocity.length()))
 	mass_number.text = str(int(mass))
+	#_update_particle_direction()
 
 func _physics_process(delta: float) -> void:
 	if is_dragging:
@@ -159,3 +160,12 @@ func set_scales():
 	if circle_shape:
 		circle_shape.radius = initial_radius * accumulated_scale_factor
 	current_children_scale = target_scale
+
+
+func _update_particle_direction():
+	var particles: GPUParticles2D = get_node("GPUParticles2D")
+	var part_material : ParticleProcessMaterial = particles.process_material
+	var direction = -linear_velocity.normalized()
+	part_material.direction = Vector3(direction.x, direction.y, 0)
+	part_material.angle_min = direction.angle_to(Vector2.UP) - 0.1
+	part_material.angle_max = direction.angle_to(Vector2.UP) + 0.1

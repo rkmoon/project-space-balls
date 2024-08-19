@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://suxn4rs2iifj"
-path="res://.godot/imported/fire_02.png-991339efad151b9f85388677760d0b5b.ctex"
+uid="uid://djglf8cfhdm0n"
+path="res://.godot/imported/circle.png-c02be48564f1b0bcc4e4332d0e46a833.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/FreeArt/Particles/Kenny'sParticlePack/fire_02.png"
-dest_files=["res://.godot/imported/fire_02.png-991339efad151b9f85388677760d0b5b.ctex"]
+source_file="res://Art/CustomArt/Particles/circle.png"
+dest_files=["res://.godot/imported/circle.png-c02be48564f1b0bcc4e4332d0e46a833.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
