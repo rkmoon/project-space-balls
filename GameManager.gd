@@ -35,3 +35,5 @@ func _init_labels(score_label: Label, mass_label: Label, speed_label: Label):
 	_mass_label = mass_label
 	_speed_label = speed_label
 
+func _restart_scene():
+	get_tree().reload_current_scene()

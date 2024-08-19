@@ -66,8 +66,8 @@ func _input(event: InputEvent) -> void:
 					layer_utils.set_regular_layers(child)
 
 	if event.is_action_pressed("reset_planet"):
-		freeze = true
-		has_fired = false
+		
+		GameManager._restart_scene()
 
 func _process(_delta: float) -> void:
 	if has_fired:
@@ -83,6 +83,7 @@ func _physics_process(_delta: float) -> void:
 
 func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 	mass = target_mass
+	angular_velocity = 0
 
 
 func update_trajectory() -> void:
