@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://emg8onhk4eil" path="res://Art/CustomArt/Planets/RandomRock2.png" id="4_y1htx"]
 [ext_resource type="Texture2D" uid="uid://cducl5tvwcg1d" path="res://Art/CustomArt/Planets/RandomRock3.png" id="5_1ngrj"]
 [ext_resource type="PackedScene" uid="uid://b74s7svs8sht1" path="res://Scenes/Player/player_object.tscn" id="5_fykwb"]
-[ext_resource type="Texture2D" uid="uid://uv7to4innthv" path="res://Art/CustomArt/Planets/CentralPlanetGrey.png" id="5_qinvl"]
 [ext_resource type="Texture2D" uid="uid://b2a7ggkxyddfr" path="res://Art/CustomArt/Planets/RandomRock4.png" id="6_b1hpf"]
 [ext_resource type="PackedScene" uid="uid://cwy5oet4toqwy" path="res://Scenes/Objects/space_object.tscn" id="6_c2i12"]
 [ext_resource type="Texture2D" uid="uid://ded7k4kdfr74y" path="res://Art/FreeArt/Particles/Kenny'sParticlePack/star_06.png" id="7_73w8f"]
+[ext_resource type="Texture2D" uid="uid://dlanqw302olyf" path="res://Art/CustomArt/Planets/CentralPlanet.png" id="8_evhhj"]
 [ext_resource type="Texture2D" uid="uid://dkrcdetyd720w" path="res://Art/FreeArt/Planets/planet14.png" id="9_b4p7p"]
 [ext_resource type="Script" path="res://Scenes/main_camera.gd" id="12_12a7u"]
 
@@ -142,7 +142,7 @@ fixed_fps = 60
 local_coords = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.02, 0.02)
+motion_scale = Vector2(0.1, 0.1)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer"]
 amount = 1000
@@ -153,7 +153,7 @@ preprocess = 20.0
 local_coords = true
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.03, 0.03)
+motion_scale = Vector2(0.15, 0.15)
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer2"]
 amount = 1000
@@ -164,7 +164,7 @@ preprocess = 20.0
 local_coords = true
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.04, 0.04)
+motion_scale = Vector2(0.2, 0.2)
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="ParallaxBackground/ParallaxLayer3"]
 amount = 1000
@@ -179,7 +179,7 @@ motion_scale = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
 visible = false
-texture_filter = 2
+texture_filter = 1
 scale = Vector2(5, 5)
 texture = ExtResource("9_b4p7p")
 
@@ -195,7 +195,7 @@ shape = SubResource("CircleShape2D_sp4ea")
 
 [node name="Sprite2D" type="Sprite2D" parent="MiddlePlanet"]
 scale = Vector2(1.75, 1.75)
-texture = ExtResource("5_qinvl")
+texture = ExtResource("8_evhhj")
 
 [node name="Gravity" parent="MiddlePlanet" instance=ExtResource("4_npblm")]
 visible = false
