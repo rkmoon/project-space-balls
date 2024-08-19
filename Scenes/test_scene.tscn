@@ -29,7 +29,6 @@ curve = SubResource("Curve_03fps")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r06gj"]
 particle_flag_disable_z = true
-emission_shape_offset = Vector3(250, 0, 0)
 emission_shape = 3
 emission_box_extents = Vector3(1000, 500, 1)
 angle_min = -720.0
@@ -118,6 +117,7 @@ player_planet = NodePath("player_object")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="NebulaLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.9, 0.9)
 
 [node name="NebulaParticles" type="GPUParticles2D" parent="ParallaxBackground/NebulaLayer"]
 amount = 2500
@@ -127,7 +127,7 @@ lifetime = 120.0
 preprocess = 120.0
 speed_scale = 3.0
 fixed_fps = 60
-visibility_rect = Rect2(-1259.96, -3179.31, 6416.86, 6251.05)
+visibility_rect = Rect2(-1506.1, -1102.52, 3385.84, 2234.34)
 local_coords = true
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="ParallaxBackground/NebulaLayer"]
