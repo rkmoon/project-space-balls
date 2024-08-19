@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var prediction_time: float = 10.0
 @export var step : float = 0.1
 @export var scale_factor = .1
+@export var damping: float = 0.05
 
 var click_position: Vector2 = Vector2.ZERO
 var is_dragging: bool = false
@@ -22,6 +23,7 @@ var initial_radius : float
 var speed_number: Label
 var mass_number: Label
 
+
 func _ready() -> void:
 	freeze = true
 	connect("body_entered", _on_body_entered)
@@ -37,6 +39,7 @@ func _ready() -> void:
 	initial_radius = collision_shape.shape.radius
 	speed_number = %SpeedNumber
 	mass_number = %MassNumber
+	linear_damp = damping
 
 	
 
@@ -66,20 +69,19 @@ func _input(event: InputEvent) -> void:
 		freeze = true
 		has_fired = false
 
-func _process(delta: float) -> void:
-	speed_number.text = str(int(linear_velocity.length()))
-	mass_number.text = str(int(mass))
-	#_update_particle_direction()
+func _process(_delta: float) -> void:
+	if has_fired:
+		GameManager.change_mass_label(mass)
+		GameManager.change_speed_label(linear_velocity.length())
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_dragging:
 		update_trajectory()
 	elif !is_dragging and freeze:
 		position = get_global_mouse_position()
 		update_trajectory()
-	#scale = target_scale
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+func _integrate_forces(_state: PhysicsDirectBodyState2D) -> void:
 	mass = target_mass
 
 
@@ -139,6 +141,7 @@ func _on_body_entered(body: Node) -> void:
 	if body is RigidBody2D:
 		if body.mass < self.mass:
 			absorb_object(body)
+			_change_score()
 
 
 			
@@ -169,3 +172,8 @@ func _update_particle_direction():
 	part_material.direction = Vector3(direction.x, direction.y, 0)
 	part_material.angle_min = direction.angle_to(Vector2.UP) - 0.1
 	part_material.angle_max = direction.angle_to(Vector2.UP) + 0.1
+
+
+func _change_score():
+	var score = mass * linear_velocity.length()
+	GameManager.add_score(score)

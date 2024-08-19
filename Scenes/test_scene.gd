@@ -21,6 +21,8 @@ var prev_player_speed := player_speed
 # The score and score label
 var score: int
 var score_label: Label
+var mass_label: Label
+var speed_label: Label
 
 func _ready() -> void:
 	for i in range(number_of_orbits):
@@ -48,23 +50,11 @@ func _ready() -> void:
 		add_child(orbit_object)
 	
 	score_label = %ScoreNumber
+	mass_label = %MassNumber
+	speed_label = %SpeedNumber
+	set_labels_for_manager()
 
-func _process(delta):
-	# Updating player stats
-	player_mass = int(player_planet.mass_number.text)
-	player_speed = int(player_planet.speed_number.text)
-	
-	# Setting other player-tied variables
-	if prev_player_mass != player_mass:
-		temp_player_mass = player_mass
-	else:
-		temp_player_mass = 0
-	temp_player_speed = player_speed
-	
-	# Getting score based on player stats
-	score += temp_player_mass * temp_player_speed
-	score_label.text = str(int(score))
-	
-	# Setting the previous player stats
-	prev_player_mass = player_mass
-	prev_player_speed = player_speed
+
+
+func set_labels_for_manager():
+	GameManager._init_labels(score_label, mass_label, speed_label)

@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 LayerUtils="*res://Utils/layer_utils.gd"
+GameManager="*res://Scenes/game_manager.tscn"
 
 [importer_defaults]
 
@@ -62,6 +63,7 @@ reset_planet={
 [physics]
 
 2d/default_gravity_vector=Vector2(0, 0)
+2d/default_linear_damp=0.0
 
 [rendering]
 

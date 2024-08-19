@@ -14,6 +14,7 @@ collision_mask = 2
 mass = 1.5
 continuous_cd = 2
 max_contacts_reported = 20
+linear_damp = 0.05
 angular_damp = 2.0
 script = ExtResource("1_6y3og")
 color_gradient = Array[Color]([Color(0.849497, 0.18215, 0.807406, 0.5), Color(0.63064, 0.269606, 0.980716, 0.5), Color(0.787546, 0.917811, 0, 1), Color(0, 0, 0.972549, 1), Color(0.636237, 0.380871, 0.790991, 1), Color(0.761895, 0.523715, 0.984957, 1)])
